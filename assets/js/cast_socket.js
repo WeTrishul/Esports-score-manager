@@ -16,7 +16,13 @@ class SocketEngine{
         this.socket.on('yesyoumayincrement',(data)=>{
             console.log(data.eleid)
             console.log('inside me')
+            if(data.datatoshow==0 && data.eleid[0]=='L' )
+            {
+                $('#'+data.eleid).text('eliminated')
+            }
+            else{
             $('#'+data.eleid).text(data.datatoshow)
+            }
            
         })
     }
