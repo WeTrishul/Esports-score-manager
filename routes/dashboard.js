@@ -11,6 +11,9 @@ router.get('/addevent',DashboardController.geteventform)
 
 router.get('/eventdata/:eventname',DashboardController.geteventdata)
 
+router.get('/castdata/:eventname',DashboardController.castdata)
+
+
 // router.post('/increment',DashboardController.incrementval)
 
 

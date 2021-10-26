@@ -38,6 +38,7 @@ class ToggleLike{
 
                 thesocket.on('yesyoumayincrement',(data)=>{
                     console.log(data.eleid)
+                    console.log('inside me')
                     $('#'+data.eleid).text(data.datatoshow)
                    
                 })

@@ -36,5 +36,17 @@ module.exports.uploadevent = async (req,res) =>{
     }
 }
 
+module.exports.castdata = async (req,res) =>{
+  
+    const event = await Event.findOne({eventname:req.params.eventname})
+    console.log(event.eventdata)
+    console.log(Object.keys(event.eventdata[0]));
+    res.render('CastPage',{
+        eventname:event.eventname,
+        eventdata:event.eventdata,
+        eventattributes:Object.keys(event.eventdata[0])
+    })
+}
+
 
 

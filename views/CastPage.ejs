@@ -9,6 +9,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
 
@@ -37,10 +38,10 @@
             
         <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
             <%for(j of eventattributes){%>
-            <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>   
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%><button class="ml-6 bg-green-500 p-2 text-white rounded-full">+</button><button class="ml-3 bg-red-400 text-white p-2 rounded-full">-</button> </td>
+            <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>    
+            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p></td>
             <%}else{%>
-                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%></td>
+                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p></td>
 
              <%}%>
 
@@ -64,6 +65,32 @@
 
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+<script src= "/js/cast_socket.js"></script>
+
+<script>
+    new SocketEngine()
+</script>
 </body>
 
 
