@@ -33,7 +33,7 @@ class ToggleLike{
                 var jsonstring = $(self).attr('value');
                 console.log(jsonstring)
                 var incrementdata = JSON.parse(jsonstring)
-              
+                
                 thesocket.emit('caniincrement',incrementdata)
 
                 thesocket.on('yesyoumayincrement',(data)=>{

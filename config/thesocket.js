@@ -17,13 +17,23 @@ module.exports.chat = (socketserver) =>{
 
         
         socket.on('caniincrement',async(data)=>{
-          console.log(data)
+         
 
 
-          console.log(data.sNo)
+          
           const event = await Event.findOne({eventname:data.eventname})
-      
-          event.eventdata[(data.sNo)-1][data.attri]++
+          
+          if(data.increment=='true')
+          {
+            event.eventdata[(data.sNo)-1][data.attri]++
+          }
+          else{
+            if(event.eventdata[(data.sNo)-1][data.attri]!=0)
+            {
+              event.eventdata[(data.sNo)-1][data.attri]--
+            }
+            
+          }
 
           var datatoshow=event.eventdata[(data.sNo)-1][data.attri]
       
@@ -31,7 +41,7 @@ module.exports.chat = (socketserver) =>{
          
           await event.save()
           
-          console.log(event)
+          
 
           io.emit('yesyoumayincrement',{
             eleid:data.attri+'-'+data.sNo+'-'+data.eventname,

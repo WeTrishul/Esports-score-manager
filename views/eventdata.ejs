@@ -39,7 +39,7 @@
         <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
             <%for(j of eventattributes){%>
             <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>   
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><button class="ml-6 bg-green-500 p-2 text-white rounded-full"><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>">+</a></button><button class="ml-3 bg-red-400 text-white p-2 rounded-full">-</button> </td>
+            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"true"}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>"><button class="ml-6 focus:outline-none bg-green-500 p-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white p-2 rounded-full">-</button></a> </td>
             <%}else{%>
                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%></td>
 
@@ -81,7 +81,7 @@
 
 
 
-
+<button><a href="">Cast View</a></button>
 
 
 
@@ -91,7 +91,7 @@
 <script>
     $('.increment').each(function(){
         let self = this;
-        console.log('Like class loaded')
+       
         let toggleLike = new ToggleLike(self);
     });
 </script>
