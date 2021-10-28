@@ -48,5 +48,32 @@ module.exports.castdata = async (req,res) =>{
     })
 }
 
+module.exports.deleteevent = async (req,res) =>{
+  
+    const event = await Event.deleteOne({eventname:req.params.eventname})
+    console.log('hogayis')
+    if (req.xhr){
+        return res.status(200).json({
+            message: "hogya"
+        });
+    }
+//    return  res.redirect('/dashboard')
+}
 
+
+module.exports.getaccesspage = async (req,res) =>{
+
+    return res.render('access')
+    
+}
+
+
+module.exports.inviteaccess = async (req,res) =>{
+    console.log(req.body)
+    if (req.xhr){
+        return res.status(200).json({
+            message: "hogya"
+        });
+    }
+}
 

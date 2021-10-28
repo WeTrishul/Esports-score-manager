@@ -60,7 +60,8 @@ document.getElementById('button').addEventListener("click", () => {
                         timeout: 1500
                         
                     }).show();
-  
+                    
+                    document.getElementById("file-form").reset();
                    
                 }, error: function(error){
                     console.log(error.responseText);

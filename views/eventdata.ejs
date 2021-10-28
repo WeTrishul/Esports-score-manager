@@ -16,16 +16,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 </head>
 
-<body>
+<body class="bg-indigo-900 bg-opacity-5 "  style=" height: 100vh;
+
+
+
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+background-image: url(https://i.gifer.com/19Nx.gif);" >
+<!-- <body> -->
     <%- include('_navbar') -%>
     
 
 <!-- component -->
-<table class="min-w-full border-collapse block md:table">
+<table class="min-w-full border-collapse block md:table mt-20">
     <thead class="block md:table-header-group">
         <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
             <%for(i of eventattributes){%>
-            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell"><%=i%></th>
+            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell"><%=i%></th>
             <%}%>
             <!-- <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
             <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
@@ -36,12 +44,12 @@
     <tbody class="block md:table-row-group">
         <%for(i of eventdata){%>
             
-        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+        <tr class="bg-gray-800 border border-grey-500 md:border-none block md:table-row" style="background-image: url(https://i.gifer.com/19Nx.gif);"">
             <%for(j of eventattributes){%>
             <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>   
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"true"}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>"><button class="ml-6 focus:outline-none bg-green-500 p-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white p-2 rounded-full">-</button></a> </td>
+            <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"true"}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>
             <%}else{%>
-                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%></td>
+                <td class="p-1  text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%></td>
 
              <%}%>
 
@@ -81,9 +89,18 @@
 
 
 
-<button><a href="/castdata/<%=eventname%>">Cast View</a></button>
 
 
+
+
+
+
+
+
+<div class="items-center flex justify-center mt-20">
+<button><a href="/castdata/<%=eventname%>" class="rounded-full bg-green-400  p-3" target="_blank">Cast Me</a></button>
+
+</div>
 
 
 <script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
