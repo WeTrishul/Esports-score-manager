@@ -23,7 +23,7 @@
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-background-image: url(https://i.gifer.com/19Nx.gif);" >
+background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" >
 <!-- <body> -->
     <%- include('_navbar') -%>
     
@@ -33,7 +33,7 @@ background-image: url(https://i.gifer.com/19Nx.gif);" >
     <thead class="block md:table-header-group">
         <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
             <%for(i of eventattributes){%>
-            <th style="background-image: url(https://i.gifer.com/19Nx.gif);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell"><%=i%></th>
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell"><%=i%></th>
             <%}%>
             <!-- <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
             <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
@@ -44,7 +44,7 @@ background-image: url(https://i.gifer.com/19Nx.gif);" >
     <tbody class="block md:table-row-group">
         <%for(i of eventdata){%>
             
-        <tr class="bg-gray-800 border border-grey-500 md:border-none block md:table-row" style="background-image: url(https://i.gifer.com/19Nx.gif);"">
+        <tr class="bg-gray-800 border border-grey-500 md:border-none block md:table-row" style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);"">
             <%for(j of eventattributes){%>
             <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>   
             <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"true"}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>

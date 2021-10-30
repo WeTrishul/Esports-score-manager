@@ -121,7 +121,7 @@ module.exports.deleteevent = async (req,res) =>{
     }
     else
     {
-        req.redirect('/dashboard')
+        res.redirect('/dashboard')
     }
 }
 
