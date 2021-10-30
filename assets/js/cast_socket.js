@@ -18,7 +18,15 @@ class SocketEngine{
             console.log('inside me')
             if(data.datatoshow==0 && data.eleid[0]=='L' )
             {
-                $('#'+data.eleid).text(data.datatoshow)
+                var x = data.datatoshow
+                var str = ""
+                while(x--)
+                {
+                    str+='|'
+                   
+                }
+                // $('#'+data.eleid).text(data.datatoshow)
+                $('#'+data.eleid).text(str)
                 $('#'+data.eleid+'-span').text('eliminated')
                 $('#'+data.eleid+'-span').css('background','#DC2626')
                 $('#'+data.eleid+'-teamname').css('color','#DC2626')
@@ -26,7 +34,14 @@ class SocketEngine{
                 console.log('#'+data.eleid+'-teamname')
             }
             else{
-            $('#'+data.eleid).text(data.datatoshow)
+                var x = data.datatoshow
+                var str = ""
+                while(x--)
+                {
+                    str+='|'
+                   
+                }
+            $('#'+data.eleid).text(str)
             $('#'+data.eleid+'-span').text('available')
                 $('#'+data.eleid+'-span').css('background','#059669')
                 $('#'+data.eleid+'-teamname').css('color','#FFFFFF')
