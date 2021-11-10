@@ -60,7 +60,7 @@
                         
 						<td class="p-3">
 							<div class="flex align-items-center">
-								<img class="rounded-full h-12 w-12  object-cover" src="https://images.unsplash.com/photo-1613588718956-c2e80305bf61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="unsplash image">
+								<img class="rounded-full h-12 w-12  object-cover" src="<%=i.Logo%>" alt="unsplash image">
 								<div class="ml-3">
 									<%if(i['Live'].length==0){%>  
 										<div class="mt-3 text-red-600" id="Live-<%=i['sNo']%>-<%=eventname%>-teamname"><%=i['Teamname']%></div>
@@ -78,7 +78,7 @@
 						</td>
 						<td class="p-3 font-bold">
 							<%if(i['Live']==0){%>  
-                            <p class="text-red-600" id="Live-<%=i['sNo']%>-<%=eventname%>">-</p>
+                            <p class="text-red-600" id="Live-<%=i['sNo']%>-<%=eventname%>"></p>
 							<%}else{%>
 								<p  id="Live-<%=i['sNo']%>-<%=eventname%>">
 									<% var str=""

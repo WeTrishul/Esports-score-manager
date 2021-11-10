@@ -20,4 +20,6 @@ router.get('/accesspage',passport.checkAuthentication,DashboardController.getacc
 
 router.post('/inviteaccess',passport.checkAuthentication,DashboardController.inviteaccess)
 
+router.get('/matchresultmanage/:eventname',passport.checkAuthentication,DashboardController.openmatchresultpage)
+
 module.exports = router;

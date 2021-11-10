@@ -7,7 +7,13 @@ const eventdataSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    eventdata:[]
+    eventdata:[],
+
+    matchdata:[],
+
+    matchresults:[],
+
+    overallresult:[]
  
 },{
     timestamps:true

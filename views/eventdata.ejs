@@ -32,37 +32,36 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
 <table class="min-w-full border-collapse block md:table mt-20">
     <thead class="block md:table-header-group">
         <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-            <%for(i of eventattributes){%>
-            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell"><%=i%></th>
-            <%}%>
-            <!-- <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
-            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
-            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
-            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th> -->
+           
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell">sNo</th>
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell">Teamname</th>
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell">Tpoint</th>
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell">Kills</th>
+            <th style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);" class="bg-black p-2 text-white font-bold md:border md:border-grey-500 text-center block md:table-cell">Live</th>
+
         </tr>
     </thead>
     <tbody class="block md:table-row-group">
         <%for(i of eventdata){%>
             
         <tr class="bg-gray-800 border border-grey-500 md:border-none block md:table-row" style="background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-background-with-red-light_55870-87.jpg?size=626&ext=jpg);"">
-            <%for(j of eventattributes){%>
+            <!-- <%for(j of eventattributes){%>
+                <%if(j!='Logo'){%>  
             <%if(j=='Tpoint' || j=='Kills' || j=='Live'){%>   
             <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><p id="<%=j%>-<%=i['sNo']%>-<%=eventname%>"><%=i[j]%></p><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"true"}' href="/increment/?attri=<%=j%>&value=<%=i[j]%>&eventname=<%=eventname%>&sNo=<%=i['sNo']%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"<%=j%>","eventname":"<%=eventname%>","sNo":<%=i["sNo"]%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>
             <%}else{%>
                 <td class="p-1  text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold"><%=j%></span><%=i[j]%></td>
 
              <%}%>
-
+             <%}%>
             <%}%>
-            <!-- <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
-            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
-            </td> -->
-            
+           -->
+           <td class="p-1  text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">sNo</span><%=i.sNo%></td>
+           <td class="p-1  text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Teamname</span><%=i.Teamname%></td>
+           <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Tpoint</span><p id="Tpoint-<%=i.sNo%>-<%=eventname%>"><%=i.Tpoint%></p><a class="increment" value='{"attri":"Tpoint","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"true"}' href="/increment/?attri=Tpoint&value=<%=i.Tpoint%>&eventname=<%=eventname%>&sNo=<%=i.sNo%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"Tpoint","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>
+           <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Kills</span><p id="Kills-<%=i.sNo%>-<%=eventname%>"><%=i.Kills%></p><a class="increment" value='{"attri":"Kills","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"true"}' href="/increment/?attri=Kills&value=<%=i.Kills%>&eventname=<%=eventname%>&sNo=<%=i.sNo%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"Kills","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>
+           <td class="p-1   text-white text-center block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Live</span><p id="Live-<%=i.sNo%>-<%=eventname%>"><%=i.Live%></p><a class="increment" value='{"attri":"Live","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"true"}' href="/increment/?attri=Live&value=<%=i.Live%>&eventname=<%=eventname%>&sNo=<%=i.sNo%>"><button class="ml-6 focus:outline-none bg-green-500 px-2 text-white rounded-full">+</button></a><a class="increment" value='{"attri":"Live","eventname":"<%=eventname%>","sNo":<%=i.sNo%>,"increment":"false"}' href="#"><button class="ml-3 focus:outline-none bg-red-400 text-white px-2 rounded-full">-</button></a> </td>
+
         </tr>
         
         <%}%>

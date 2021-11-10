@@ -66,8 +66,77 @@ module.exports.uploadevent = async (req,res) =>{
     }
     else if(req.user.usertype=='Admin')
     {
-        const event = await Event.create(req.body)    
-        console.log(event)
+       
+        let mymap = new Map();
+
+        let eve = req.body.eventdata
+  
+   let unique = req.body.eventdata.filter(el => {
+    const val = mymap.get(el.TEAMNAME);
+    if(val) {
+        if(el.LOGO < val) {
+            mymap.delete(el.TEAMNAME);
+            mymap.set(el.TEAMNAME, el.LOGO);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    mymap.set(el.TEAMNAME, el.LOGO);
+    return true;
+});
+  
+var eventdata = []
+
+unique.forEach((element)=>{
+
+      var obj = {
+                sNo:eventdata.length+1,
+                Logo:element.LOGO,
+                Teamname:element.TEAMNAME,
+                Tpoint:0,
+                Kills:0,
+                Live:0
+            }
+            eventdata.push(obj)
+
+})
+
+
+        
+               var matchdata = []
+        unique.forEach(ele=>{
+            
+            var playersArray = []
+            eve.forEach(element=>{
+               
+                if(element.TEAMNAME==ele.TEAMNAME)
+                {
+                    var player = {
+                        playername:element.PLAYER,
+                        finnish:0,
+                        damage:0
+                    }
+                   
+                   
+                    playersArray.push(player)
+                }
+            });
+            
+
+            var ob = {
+                teamname:ele.TEAMNAME,
+                playersArray:playersArray,
+                pos:0
+            }
+
+            matchdata.push(ob)
+
+        })
+
+        const event = await Event.create({eventname:req.body.eventname,eventdata,matchdata})   
+
+        // console.log(event)
         if (req.xhr){
             return res.status(200).json({
                 message: "hogya"
@@ -188,5 +257,18 @@ module.exports.inviteaccess = async (req,res) =>{
     }  
 
     
+}
+
+
+module.exports.openmatchresultpage = async (req,res) =>{
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+console.log(eve.matchdata)
+   return res.render('matchresult',{
+       matchdata : eve.matchdata
+   })
+
+
 }
 
