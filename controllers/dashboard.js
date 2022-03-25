@@ -66,8 +66,77 @@ module.exports.uploadevent = async (req,res) =>{
     }
     else if(req.user.usertype=='Admin')
     {
-        const event = await Event.create(req.body)    
-        console.log(event)
+       
+        let mymap = new Map();
+
+        let eve = req.body.eventdata
+  
+   let unique = req.body.eventdata.filter(el => {
+    const val = mymap.get(el.TEAMNAME);
+    if(val) {
+        if(el.LOGO < val) {
+            mymap.delete(el.TEAMNAME);
+            mymap.set(el.TEAMNAME, el.LOGO);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    mymap.set(el.TEAMNAME, el.LOGO);
+    return true;
+});
+  
+var eventdata = []
+
+unique.forEach((element)=>{
+
+      var obj = {
+                sNo:eventdata.length+1,
+                Logo:element.LOGO,
+                Teamname:element.TEAMNAME,
+                Tpoint:0,
+                Kills:0,
+                Live:0
+            }
+            eventdata.push(obj)
+
+})
+
+
+        
+               var matchdata = []
+        unique.forEach(ele=>{
+            
+            var playersArray = []
+            eve.forEach(element=>{
+               
+                if(element.TEAMNAME==ele.TEAMNAME)
+                {
+                    var player = {
+                        playername:element.PLAYER,
+                        finnish:0,
+                        damage:0
+                    }
+                   
+                   
+                    playersArray.push(player)
+                }
+            });
+            
+
+            var ob = {
+                teamname:ele.TEAMNAME,
+                playersArray:playersArray,
+                pos:0
+            }
+
+            matchdata.push(ob)
+
+        })
+
+        const event = await Event.create({eventname:req.body.eventname,eventdata,matchdata})   
+
+        // console.log(event)
         if (req.xhr){
             return res.status(200).json({
                 message: "hogya"
@@ -187,6 +256,96 @@ module.exports.inviteaccess = async (req,res) =>{
         console.log('Error in signup')
     }  
 
+    
+}
+
+
+module.exports.openmatchresultpage = async (req,res) =>{
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+console.log(eve.matchdata)
+   return res.render('matchresult',{
+       matchdata : eve.matchdata,
+       eve:req.params.eventname
+   })
+
+
+}
+
+module.exports.savematchdata = async(req,res)=>{
+
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+
+
+    eve.matchdata.forEach((ele)=>{
+
+        ele.pos=req.body[ele.teamname+"-"+"pos"]
+        ele.playersArray.forEach((e)=>{
+
+            e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
+            e.damage=req.body[ele.teamname+"_"+e.playername+"_damage"]
+           
+
+        })
+    })
+
+    eve.markModified('matchdata');
+     
+    var si = eve.matchresults.length
+
+    var o = {
+        matchno:si+1,
+        matchdata:eve.matchdata
+    }
+    eve.matchresults.push(o)
+    
+    await eve.save()
+
+  return res.redirect('/eventpage/'+eve.eventname)
+}
+
+
+module.exports.geteventpage =async (req,res) =>{
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+    console.log(eve)
+   return res.render('eventpage',{
+        eve
+    })
+}
+
+module.exports.castmatchresult = async (req,res) =>{
+
+    console.log(req.params.matchno)
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+    var matchinconcern = eve.matchresults[req.params.matchno]
+
+    var teamleaderboards = matchinconcern.matchdata.sort((a, b) => (a.pos > b.pos) ? 1 : -1)
+
+
+    var allplayers = []
+
+    matchinconcern.matchdata.forEach((ele)=>{
+
+        ele.playersArray.forEach((e)=>{
+            allplayers.push({
+                teamname:ele.teamname,
+                playername:e.playername,
+                finnish:e.finnish,
+                damage:e.damage
+            })
+        })
+    })
+    var killsleaders = allplayers.sort((a, b) => (a.damage  < b.damage) ? 1 : -1)
+
+    console.log(teamleaderboards)
+    console.log(killsleaders)
+   
+    
     
 }
 
