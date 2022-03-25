@@ -50,30 +50,34 @@
             <td align="center">DMG</td>
         </tr>
  
-      
+      <form action="/savematchdata/<%=eve%>" method="POST">
  
         <%  for(var i=0;i<matchdata.length;i++){%>
         <tr>
             <td rowspan="5" align="center"><%=matchdata[i].teamname%></td>
             <td rowspan="5" align="center"><%=i+1%></td>
 
-            <td align="center" ><%=matchdata[i].playersArray[0].playername%></td>
-            <td rowspan="5" align="center"><input size="1" placeholder="0" type="text"></td>
-            <td align="center"><input size="1" placeholder="0" type="text"></td>
-            <td align="center"><input size="1" placeholder="0" type="text"></td>
+            <td align="center" ></td>
+            <td rowspan="5" align="center"><input value="0" name="<%=matchdata[i].teamname%>-pos" size="1" placeholder="0" type="text"></td>
+            <td align="center"></td>
+            <td align="center"></td>
         </tr>
         <%  for(var j=0;j<matchdata[i].playersArray.length;j++){%>
         <tr>
             <td align="center"><%=matchdata[i].playersArray[j].playername%></td>
-            <td align="center" ><input size="1" placeholder="0" type="text"></td>
-            <td align="center"><input size="1" placeholder="0" type="text"></td>
+            <td align="center" ><input value="0" name="<%=matchdata[i].teamname%>_<%=matchdata[i].playersArray[j].playername%>_damage" size="1" placeholder="0" type="text"></td>
+            <td align="center"><input value="0" name="<%=matchdata[i].teamname%>_<%=matchdata[i].playersArray[j].playername%>_finnish" size="1" placeholder="0" type="text"></td>
  
         </tr>
  
         <%}%>
         <%}%>
+        <button type="submit">Save</button>
+    </form>
     </table>
 
+
+    
 </body>
 
 

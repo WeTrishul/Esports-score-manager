@@ -22,4 +22,11 @@ router.post('/inviteaccess',passport.checkAuthentication,DashboardController.inv
 
 router.get('/matchresultmanage/:eventname',passport.checkAuthentication,DashboardController.openmatchresultpage)
 
+router.post('/savematchdata/:eventname',passport.checkAuthentication,DashboardController.savematchdata)
+
+router.get('/eventpage/:eventname',passport.checkAuthentication,DashboardController.geteventpage)
+
+router.get('/castmatchresult/:eventname/:matchno',passport.checkAuthentication,DashboardController.castmatchresult)
+
+
 module.exports = router;

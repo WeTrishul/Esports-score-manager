@@ -266,9 +266,86 @@ module.exports.openmatchresultpage = async (req,res) =>{
 
 console.log(eve.matchdata)
    return res.render('matchresult',{
-       matchdata : eve.matchdata
+       matchdata : eve.matchdata,
+       eve:req.params.eventname
    })
 
 
+}
+
+module.exports.savematchdata = async(req,res)=>{
+
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+
+
+    eve.matchdata.forEach((ele)=>{
+
+        ele.pos=req.body[ele.teamname+"-"+"pos"]
+        ele.playersArray.forEach((e)=>{
+
+            e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
+            e.damage=req.body[ele.teamname+"_"+e.playername+"_damage"]
+           
+
+        })
+    })
+
+    eve.markModified('matchdata');
+     
+    var si = eve.matchresults.length
+
+    var o = {
+        matchno:si+1,
+        matchdata:eve.matchdata
+    }
+    eve.matchresults.push(o)
+    
+    await eve.save()
+
+  return res.redirect('/eventpage/'+eve.eventname)
+}
+
+
+module.exports.geteventpage =async (req,res) =>{
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+    console.log(eve)
+   return res.render('eventpage',{
+        eve
+    })
+}
+
+module.exports.castmatchresult = async (req,res) =>{
+
+    console.log(req.params.matchno)
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+    var matchinconcern = eve.matchresults[req.params.matchno]
+
+    var teamleaderboards = matchinconcern.matchdata.sort((a, b) => (a.pos > b.pos) ? 1 : -1)
+
+
+    var allplayers = []
+
+    matchinconcern.matchdata.forEach((ele)=>{
+
+        ele.playersArray.forEach((e)=>{
+            allplayers.push({
+                teamname:ele.teamname,
+                playername:e.playername,
+                finnish:e.finnish,
+                damage:e.damage
+            })
+        })
+    })
+    var killsleaders = allplayers.sort((a, b) => (a.damage  < b.damage) ? 1 : -1)
+
+    console.log(teamleaderboards)
+    console.log(killsleaders)
+   
+    
+    
 }
 

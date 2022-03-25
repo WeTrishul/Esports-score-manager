@@ -31,26 +31,40 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
     
     <!-- https://i.pinimg.com/originals/3f/7c/2e/3f7c2e51d5f75beabec6e5803551dc80.gif -->
    <br>
+
+   <h1 class="text-white text-2xl"><%=eve.eventname%></h1>
+
+   <br>
    <!-- https://twistedsifter.com/2013/05/animated-gifs-of-fighting-game-backgrounds/ -->
       
+    <a class="text-white" href="/eventdata/<%=eve.eventname%>"><button>Manage Live Cast</button></a>
+
+    <br>
+
+    <a class="text-white" href="/matchresultmanage/<%=eve.eventname%>"><button>Add match result</button></a>
+
+    <br>
+    
+    <a class="text-white" href="/matchresultmanage/<%=eve.eventname%>"><button>Cast Overall result</button></a>
+
 
    <!-- https://i2.wp.com/windowscustomization.com/wp-content/uploads/2018/11/bf4-rain-parallax.gif?fit=750%2C367&quality=80&strip=all&ssl=1 -->
 
 
         <div class="ml-auto mr-auto mt-6 w-1/2  h-1/2 overflow-auto bg-scroll"   >
             <br>
-            <%for(i of allevents){%>
+            <%for(var i=0;i<eve.matchresults.length;i++){%>
             
-            <div id="event-<%=i.eventname%>" class="flex max-w-sm  w-full bg-black shadow-md rounded-lg overflow-hidden mx-auto transition duration-500 ease-in-out cursor-pointer hover:bg-indigo-700  transform hover:-translate-y-1 hover:scale-110 ...">
+            <div id="" class="flex max-w-sm  w-full bg-black shadow-md rounded-lg overflow-hidden mx-auto transition duration-500 ease-in-out cursor-pointer hover:bg-indigo-700  transform hover:-translate-y-1 hover:scale-110 ...">
                 <div class="w-2 bg-indigo-700 ">
                 </div>
-                <a href="/eventpage/<%=i.eventname%>" > 
+                <a href="/castmatchresult/<%=eve.eventname%>/<%=i%>" >
                 <div class="w-full flex justify-between items-start px-2 py-2">
                     <div class="flex flex-col ml-2">
-                        <label class="text-white font-semibold "><%=i.eventname%></label>
+                        <label class="text-white font-semibold ">Match-<%=i+1%> Result</label>
                     </div>
                     <!-- <p class="text-indigo-500">---------</p> -->
-                    <a href="/deleteevent/<%=i.eventname%>" class="anevent" value="<%=i.eventname%>" >
+                    <a href="" class="anevent" value="" >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="#059669" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -67,7 +81,7 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
         
 
 
-        <script>
+        <!-- <script>
              class ToggleLike{
         constructor(toggleElement){
             this.toggler = toggleElement;
@@ -106,7 +120,7 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
                
                 let toggleLike = new ToggleLike(self);
             });
-        </script>
+        </script> -->
 
     
 </body>
