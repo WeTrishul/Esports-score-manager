@@ -73,6 +73,8 @@ module.exports.uploadevent = async (req,res) =>{
   
    let unique = req.body.eventdata.filter(el => {
     const val = mymap.get(el.TEAMNAME);
+
+
     if(val) {
         if(el.LOGO < val) {
             mymap.delete(el.TEAMNAME);
@@ -127,7 +129,8 @@ unique.forEach((element)=>{
             var ob = {
                 teamname:ele.TEAMNAME,
                 playersArray:playersArray,
-                pos:0
+                pos:0,
+                Logo:ele.LOGO,
             }
 
             matchdata.push(ob)
@@ -343,9 +346,12 @@ module.exports.castmatchresult = async (req,res) =>{
     var killsleaders = allplayers.sort((a, b) => (a.damage  < b.damage) ? 1 : -1)
 
     console.log(teamleaderboards)
-    console.log(killsleaders)
+    //console.log(killsleaders)
    
-    
+    return res.render('singlematchresult',{
+        teamleaderboards,
+        killsleaders
+    })
     
 }
 

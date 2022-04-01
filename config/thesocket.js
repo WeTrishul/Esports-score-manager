@@ -41,10 +41,11 @@ module.exports.chat = (socketserver) =>{
          
           await event.save()
           
-          
+          console.log(data,'from the socket')
 
           io.emit('yesyoumayincrement',{
             eleid:data.attri+'-'+data.sNo+'-'+data.eventname,
+            teamName:data.teamName,
             datatoshow
           })
 

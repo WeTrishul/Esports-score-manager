@@ -14,7 +14,7 @@ class SocketEngine{
         });
 
         this.socket.on('yesyoumayincrement',(data)=>{
-            console.log(data.eleid)
+            console.log('castsocket',data)
             console.log('inside me')
             if(data.datatoshow==0 && data.eleid[0]=='L' )
             {
@@ -32,14 +32,21 @@ class SocketEngine{
                 $('#'+data.eleid+'-teamname').css('color','#DC2626')
                 $('#'+data.eleid).css('color','#DC2626')
                 console.log('#'+data.eleid+'-teamname')
+
+                new Noty({
+                    type: 'success',
+                    layout: 'center',
+                    text: 'This is my noty Message',
+                    timeout: 2000,
+                    }).show();
             }
+
             else{
                 var x = data.datatoshow
                 var str = ""
                 while(x--)
                 {
-                    str+='|'
-                   
+                    str+='|' 
                 }
             $('#'+data.eleid).text(str)
             $('#'+data.eleid+'-span').text('available')
@@ -47,8 +54,20 @@ class SocketEngine{
                 $('#'+data.eleid+'-teamname').css('color','#FFFFFF')
                 $('#'+data.eleid+'-teamname').css('color','#FFFFFF')
                 $('#'+data.eleid).css('color','#FFFFFF')
-
+                
             }
+
+            console.log(data.attri)
+
+            /*if(data.eleid[0]=='K')
+                {
+                    new Noty({
+                        type: 'success',
+                        layout: 'center',
+                        text: data.teamName+' killed '+data.datatoshow,
+                        timeout: 2000,
+                        }).show();
+                }*/
            
         })
     }
