@@ -10,10 +10,60 @@
     <title>Dashboard</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
    
+  
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+ <!-- Add Material font (Roboto) and Material icon as needed -->
+ 
+ <!-- Optional Material CSS for Plugins
+ <link href="https://cdn.jsdelivr.net/gh/djibe/material@4.6.0-rc.2/css/material-plugins.min.css" rel="stylesheet" crossorigin>
+ -->
+
+ <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidenav {
+      height: 50%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
 </head>
 
 <body class="bg-indigo-900 bg-opacity-5 "  style=" height: 100vh;
@@ -28,16 +78,28 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
     
 
     <%- include('_navbar') -%>
+
+  
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/eventdata/<%=eve.eventname%>">Live Cast</a>
+        <a href="/matchresultmanage/<%=eve.eventname%>">Add Match Result</a>
+        <a href="/castfinalresult/<%=eve.eventname%>">Overall Result</a>
+       
+      </div>
+      
+     
+      <span style="font-size:30px;cursor:pointer;color: white;" onclick="openNav()">&#9776; <%=eve.eventname%></span>
     
     <!-- https://i.pinimg.com/originals/3f/7c/2e/3f7c2e51d5f75beabec6e5803551dc80.gif -->
    <br>
 
-   <h1 class="text-white text-2xl"><%=eve.eventname%></h1>
+   <!-- <h1 class="text-white text-2xl"><%=eve.eventname%></h1> -->
 
    <br>
    <!-- https://twistedsifter.com/2013/05/animated-gifs-of-fighting-game-backgrounds/ -->
       
-    <a class="text-white" href="/eventdata/<%=eve.eventname%>"><button>Manage Live Cast</button></a>
+    <!-- <a class="text-white" href="/eventdata/<%=eve.eventname%>"><button>Manage Live Cast</button></a>
 
     <br>
 
@@ -45,7 +107,7 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
 
     <br>
     
-    <a class="text-white" href="/castfinalresult/<%=eve.eventname%>"><button>Cast Overall result</button></a>
+    <a class="text-white" href="/castfinalresult/<%=eve.eventname%>"><button>Cast Overall result</button></a> -->
 
 
    <!-- https://i2.wp.com/windowscustomization.com/wp-content/uploads/2018/11/bf4-rain-parallax.gif?fit=750%2C367&quality=80&strip=all&ssl=1 -->
@@ -121,7 +183,18 @@ background-image: url(https://img.freepik.com/free-vector/modern-dark-abstract-b
                 let toggleLike = new ToggleLike(self);
             });
         </script> -->
+ 
 
+        <script>
+            function openNav() {
+              document.getElementById("mySidenav").style.width = "250px";
+            }
+            
+            function closeNav() {
+              document.getElementById("mySidenav").style.width = "0";
+            }
+            </script>
+        </body>
     
 </body>
 
