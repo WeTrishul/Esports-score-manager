@@ -137,7 +137,7 @@ unique.forEach((element)=>{
 
         })
 
-        const event = await Event.create({eventname:req.body.eventname,eventdata,matchdata})   
+        const event = await Event.create({eventname:req.body.eventname,eventdata:eventdata,matchdata:matchdata})   
 
         // console.log(event)
         if (req.xhr){
@@ -281,21 +281,36 @@ module.exports.savematchdata = async(req,res)=>{
 
     const eve = await Event.findOne({eventname:req.params.eventname})
 
-
+   
 
     eve.matchdata.forEach((ele)=>{
 
-        ele.pos=req.body[ele.teamname+"-"+"pos"]
+        ele.placement=req.body[ele.teamname+"-"+"TPlace"]
+        ele.teamFinnish=req.body[ele.teamname+"-"+"TFin"]
+        ele.teamPoint=req.body[ele.teamname+"-"+"TPoint"]
         ele.playersArray.forEach((e)=>{
 
             e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
-            e.damage=req.body[ele.teamname+"_"+e.playername+"_damage"]
+            // e.damage=req.body[ele.teamname+"_"+e.playername+"_placement"]
            
 
         })
     })
 
+
+  
+  await  eve.matchdata.sort(
+        function(a, b) {          
+           if (a.teamPoint == b.teamPoint) {
+              return a.placement < b.placement? 1 : -1;
+           }
+           return a.teamPoint > b.teamPoint ? 1 : -1;
+        });
+
+
     eve.markModified('matchdata');
+
+    
      
     var si = eve.matchresults.length
 
@@ -305,6 +320,27 @@ module.exports.savematchdata = async(req,res)=>{
     }
     eve.matchresults.push(o)
     
+    if(eve.overallresult.length==0)
+    {
+        eve.overallresult = eve.matchdata;
+    }
+    else{
+        await eve.matchdata.forEach(async(ele)=>{
+           var team = await eve.overallresult.find(element => element.teamname == ele.teamname)
+
+           team.teamPoint =parseInt(team.teamPoint)+parseInt(ele.teamPoint);
+           team.placement = parseInt(team.placement)+parseInt(ele.placement);
+           team.teamFinnish =parseInt(team.teamFinnish) + parseInt(ele.teamFinnish) ;
+
+            for(var k=0 ; k<4 ; k++)
+            {
+            team.playersArray[k].finnish = parseInt(team.playersArray[k].finnish)+parseInt(ele.playersArray[k].finnish);
+            }
+
+        })
+    }
+
+    eve.markModified('overallresult');
     await eve.save()
 
   return res.redirect('/eventpage/'+eve.eventname)
@@ -355,3 +391,14 @@ module.exports.castmatchresult = async (req,res) =>{
     
 }
 
+
+module.exports.castOverAllResult=async(req,res)=>{
+
+    const eve = await Event.findOne({eventname:req.params.eventname})
+
+    let overAll = []
+
+    eve.matchresults.forEach((ele)=>{
+
+    })
+}
