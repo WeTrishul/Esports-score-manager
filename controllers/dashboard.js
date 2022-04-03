@@ -391,9 +391,11 @@ module.exports.castmatchresult = async (req,res) =>{
 
 
    
-    //console.log(killsleaders)
+    // console.log("Chal rha h",killsleaders)
+    // console.log("Yh bhi chal rha h ",teamleaderboards)
    
     return res.render('singlematchresult',{
+        matchno : req.params.matchno,
         teamleaderboards,
         killsleaders
     })
@@ -433,9 +435,9 @@ module.exports.castOverAllResult=async(req,res)=>{
 
     var killsleaders = allplayers.sort((a, b) => (parseInt(a.finnish)  < parseInt(b.finnish)) ? 1 : -1)
 
-    console.log("Chal rha h",killsleaders)
-    console.log("Yh bhi chal rha h ",teamleaderboards)
-    return res.render('singlematchresult',{
+    // console.log("Chal rha h",killsleaders)
+    // console.log("Yh bhi chal rha h ",teamleaderboards)
+    return res.render('finalmatchresult',{
         teamleaderboards,
         killsleaders
     })
