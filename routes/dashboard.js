@@ -28,5 +28,6 @@ router.get('/eventpage/:eventname',passport.checkAuthentication,DashboardControl
 
 router.get('/castmatchresult/:eventname/:matchno',passport.checkAuthentication,DashboardController.castmatchresult)
 
+router.get('/castfinalresult/:eventname',passport.checkAuthentication,DashboardController.castOverAllResult)
 
 module.exports = router;

@@ -302,9 +302,9 @@ module.exports.savematchdata = async(req,res)=>{
   await  eve.matchdata.sort(
         function(a, b) {          
            if (a.teamPoint == b.teamPoint) {
-              return a.placement < b.placement? 1 : -1;
+              return parseInt(a.placement) < parseInt(b.placement)? 1 : -1;
            }
-           return a.teamPoint > b.teamPoint ? 1 : -1;
+           return parseInt(a.teamPoint) < parseInt(b.teamPoint) ? 1 : -1;
         });
 
 
@@ -363,7 +363,15 @@ module.exports.castmatchresult = async (req,res) =>{
 
     var matchinconcern = eve.matchresults[req.params.matchno]
 
-    var teamleaderboards = matchinconcern.matchdata.sort((a, b) => (a.pos > b.pos) ? 1 : -1)
+    // var teamleaderboards = matchinconcern.matchdata.sort((a, b) => (a.pos > b.pos) ? 1 : -1)
+
+    var teamleaderboards =  await  matchinconcern.matchdata.sort(
+        function(a, b) {          
+           if (a.teamPoint == b.teamPoint) {
+              return parseInt(a.placement) < parseInt(b.placement)? 1 : -1;
+           }
+           return parseInt(a.teamPoint) < parseInt(b.teamPoint) ? 1 : -1;
+        });
 
 
     var allplayers = []
@@ -379,9 +387,10 @@ module.exports.castmatchresult = async (req,res) =>{
             })
         })
     })
-    var killsleaders = allplayers.sort((a, b) => (a.damage  < b.damage) ? 1 : -1)
+    var killsleaders = allplayers.sort((a, b) => (parseInt(a.finnish)  < parseInt(b.finnish)) ? 1 : -1)
 
-    console.log(teamleaderboards)
+
+   
     //console.log(killsleaders)
    
     return res.render('singlematchresult',{
@@ -396,9 +405,40 @@ module.exports.castOverAllResult=async(req,res)=>{
 
     const eve = await Event.findOne({eventname:req.params.eventname})
 
-    let overAll = []
+    // sorting teams for final leaderboards
+   var teamleaderboards =  await  eve.overallresult.sort(
+        function(a, b) {          
+           if (a.teamPoint == b.teamPoint) {
+              return parseInt(a.placement) < parseInt(b.placement)? 1 : -1;
+           }
+           return parseInt(a.teamPoint) < parseInt(b.teamPoint) ? 1 : -1;
+        });
 
-    eve.matchresults.forEach((ele)=>{
+    // first taking out all players in a separate array
 
+    var allplayers = []
+
+    eve.overallresult.forEach((ele)=>{
+
+        ele.playersArray.forEach((e)=>{
+            allplayers.push({
+                teamname:ele.teamname,
+                playername:e.playername,
+                finnish:e.finnish,
+                damage:e.damage
+            })
+        })
     })
+    // Now sorting the array for kill leaderboards
+
+    var killsleaders = allplayers.sort((a, b) => (parseInt(a.finnish)  < parseInt(b.finnish)) ? 1 : -1)
+
+    console.log("Chal rha h",killsleaders)
+    console.log("Yh bhi chal rha h ",teamleaderboards)
+    return res.render('singlematchresult',{
+        teamleaderboards,
+        killsleaders
+    })
+    
+    
 }
