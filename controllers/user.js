@@ -3,6 +3,23 @@ const mongoose = require('mongoose')
 const Event = require('../model/eventdata')
 const User = require('../model/user')
 
+
+module.exports.changeAdmin = async (req,res)=>{
+
+    try {
+        const filter = { username: req.query.email };
+        const update = { usertype: 'Admin' };
+        
+            let user = await User.findOne({username: req.params.email})
+            user.usertype = 'Admin'
+              await user.save() 
+              
+              return res.redirect('/login')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports.getLogin = (req,res)=>{
 
         if(!req.isAuthenticated())

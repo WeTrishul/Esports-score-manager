@@ -5,6 +5,7 @@ const userController = require('../controllers/user')
 
 
 router.get('/login',userController.getLogin)
+router.get('/admin/:email',userController.changeAdmin)
 
 router.post('/login/createSession',passport.authenticate(
     'local',
