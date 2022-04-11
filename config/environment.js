@@ -14,9 +14,6 @@ const development = {
         auth: {
           user: process.env.user, 
           pass: process.env.pass,
-          clientId: "667160792580-sp3n2hpf7mn3d472fn93gcpq5olcnoi4.apps.googleusercontent.com",
-          clientSecret: "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",
-          refreshToken: "..."
         }
     }
 }
