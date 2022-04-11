@@ -9,11 +9,14 @@ const development = {
     smtp:{
         service:"gmail",
         host: "smtp.gmail.com",
-        port: 587,
+        port: 25,
         secure: false, // true for 465, false for other ports
         auth: {
           user: process.env.user, 
           pass: process.env.pass,
+          clientId: "667160792580-sp3n2hpf7mn3d472fn93gcpq5olcnoi4.apps.googleusercontent.com",
+          clientSecret: "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",
+          refreshToken: "..."
         }
     }
 }
