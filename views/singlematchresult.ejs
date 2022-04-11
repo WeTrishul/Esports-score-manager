@@ -55,25 +55,25 @@
                                 </tr>
                             </thead>
                             <tbody class="text-sm divide-y divide-gray-100">
-                                <%for(i of teamleaderboards){%>
+                                <%for(var i=0;i<teamleaderboards.length;i++){%>
                                 <tr>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left">1</div>
+                                        <div class="text-left"><%=i+1%></div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="flex items-center">
-                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full h-12 w-12  object-cover" src="<%=i.Logo%>" width="40" height="40" alt="Alex Shatov"></div>
-                                            <div class="font-medium text-gray-800"><%=i.teamname%></div>
+                                            <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full h-12 w-12  object-cover" src="<%=teamleaderboards[i].Logo%>" width="40" height="40" alt="Alex Shatov"></div>
+                                            <div class="font-medium text-gray-800"><%=teamleaderboards[i].teamname%></div>
                                         </div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left"><%=i.placement%></div>
+                                        <div class="text-left"><%=teamleaderboards[i].placement%></div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left font-medium text-green-500"><%=i.teamFinnish%></div>
+                                        <div class="text-left font-medium text-green-500"><%=teamleaderboards[i].teamFinnish%></div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center"><%=i.teamPoint%></div>
+                                        <div class="text-lg text-center"><%=teamleaderboards[i].teamPoint%></div>
                                     </td>
                                 </tr>
                                 <%}%>
