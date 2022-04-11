@@ -22,7 +22,7 @@ app.use(cors({
 }))
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://54.144.1.16:3000");
+    res.setHeader("Access-Control-Allow-Origin", "http://54.144.1.16:4000");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
