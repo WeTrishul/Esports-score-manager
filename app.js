@@ -1,9 +1,11 @@
 const express = require('express')
 const app=express()
+const dotenv = require('dotenv');
 const session = require('express-session')
 const ejs = require('ejs')
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser')
+const env = require('./config/environment')
 const db = require('./config/db')
 const cors = require('cors')
 const passport = require('passport')
@@ -29,14 +31,14 @@ app.set('views','./views')
 
 app.use(session({
     name: 'EsportsManager',
-    secret: 'Env.session_cookie_key',
+    secret: env.session_cookie_key,
     saveUninitialized:false,
     resave:false,
     cookie:{
         maxAge: (1000*60*100)
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1:27017/esportscore',
+        mongoUrl: `mongodb://127.0.0.1:27017/${env.db}`,
         autoRemove:'disabled',
     },
     function(err)
