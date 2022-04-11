@@ -4,18 +4,14 @@ module.exports.chat = (socketserver) =>{
 
 
 
-    //let io = require('socket.io')(socketserver)/*, {
-        //cors: {
-        //  origin: "http://54.144.1.16:3000",
-        //  methods: ["GET", "POST"]
-       // }
-     // })
-
-      const io = require('socket.io')(socketserver, {
+    let io = require('socket.io')(socketserver, {
         cors: {
-          origin: '*',
+          origin: "http://54.144.1.16:4000",
+         methods: ["GET", "POST"]
         }
-      });
+      })
+
+  
 
 
     io.sockets.on('connection',(socket)=>{
