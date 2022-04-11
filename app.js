@@ -15,9 +15,20 @@ const MongoStore = require('connect-mongo')
 const DashboardRouter = require('./routes/dashboard')
 const userRouter = require('./routes/user')
 
+
+
 app.use(cors({
     origin:'*'
 }))
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://54.144.1.16");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
 
 
 const port=process.env.PORT || 3000
