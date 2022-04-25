@@ -1,7 +1,7 @@
 
 class SocketEngine{
     constructor(){
-        this.socket = io.connect('http://54.226.206.106:4000');
+        this.socket = io.connect('http://54.160.241.49:4000');
             this.connectionHandler();
     }
     connectionHandler(){
