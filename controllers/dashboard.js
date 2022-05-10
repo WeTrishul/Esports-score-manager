@@ -116,6 +116,7 @@ unique.forEach((element)=>{
                 {
                     var player = {
                         playername:element.PLAYER,
+                        dp:element.DP,
                         finnish:0,
                         damage:0
                     }
@@ -288,6 +289,7 @@ module.exports.savematchdata = async(req,res)=>{
         ele.placement=req.body[ele.teamname+"-"+"TPlace"]
         ele.teamFinnish=req.body[ele.teamname+"-"+"TFin"]
         ele.teamPoint=req.body[ele.teamname+"-"+"TPoint"]
+        ele.WWCD=req.body[ele.teamname+"-"+"WWCD"]
         ele.playersArray.forEach((e)=>{
 
             e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
@@ -331,6 +333,7 @@ module.exports.savematchdata = async(req,res)=>{
            team.teamPoint =parseInt(team.teamPoint)+parseInt(ele.teamPoint);
            team.placement = parseInt(team.placement)+parseInt(ele.placement);
            team.teamFinnish =parseInt(team.teamFinnish) + parseInt(ele.teamFinnish) ;
+           team.WWCD = parseInt(team.WWCD) + parseInt(ele.WWCD);
 
             for(var k=0 ; k<4 ; k++)
             {
@@ -382,6 +385,7 @@ module.exports.castmatchresult = async (req,res) =>{
             allplayers.push({
                 teamname:ele.teamname,
                 playername:e.playername,
+                dp:e.dp,
                 finnish:e.finnish,
                 damage:e.damage
             })
@@ -426,6 +430,7 @@ module.exports.castOverAllResult=async(req,res)=>{
             allplayers.push({
                 teamname:ele.teamname,
                 playername:e.playername,
+                dp:e.dp,
                 finnish:e.finnish,
                 damage:e.damage
             })

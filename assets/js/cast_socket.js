@@ -16,6 +16,16 @@ class SocketEngine{
         this.socket.on('yesyoumayincrement',(data)=>{
             console.log('castsocket',data)
             console.log('inside me')
+            if(data.eleid[0]=='K')
+            {
+
+                var x = data.datatoshow
+              
+            $('#'+data.eleid+'-teamname').text(x)
+          
+              
+                
+            }
             if(data.datatoshow==0 && data.eleid[0]=='L' )
             {
                 var x = data.datatoshow
