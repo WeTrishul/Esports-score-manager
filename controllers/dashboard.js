@@ -283,7 +283,7 @@ module.exports.savematchdata = async(req,res)=>{
     const eve = await Event.findOne({eventname:req.params.eventname})
 
    
-
+    
     eve.matchdata.forEach((ele)=>{
 
         ele.placement=req.body[ele.teamname+"-"+"TPlace"]
@@ -333,6 +333,7 @@ module.exports.savematchdata = async(req,res)=>{
            team.teamPoint =parseInt(team.teamPoint)+parseInt(ele.teamPoint);
            team.placement = parseInt(team.placement)+parseInt(ele.placement);
            team.teamFinnish =parseInt(team.teamFinnish) + parseInt(ele.teamFinnish) ;
+           team.elevation =parseInt(team.teamPoint)- parseInt(ele.teamPoint);
            team.WWCD = parseInt(team.WWCD) + parseInt(ele.WWCD);
 
             for(var k=0 ; k<4 ; k++)
@@ -396,12 +397,22 @@ module.exports.castmatchresult = async (req,res) =>{
 
    
     // console.log("Chal rha h",killsleaders)
+    var chartkliyeteams = []
+    var chartkliyekills = []
+
+    for(i of teamleaderboards)
+    {
+        chartkliyekills.push(i.teamFinnish)
+        chartkliyeteams.push(i.teamname)
+    }
     // console.log("Yh bhi chal rha h ",teamleaderboards)
    
     return res.render('singlematchresult',{
         matchno : req.params.matchno,
         teamleaderboards,
-        killsleaders
+        killsleaders,
+        chartkliyekills,
+        chartkliyeteams
     })
     
 }

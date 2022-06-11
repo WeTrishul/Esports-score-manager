@@ -46,7 +46,7 @@ class SocketEngine{
                 new Noty({
                     type: 'success',
                     layout: 'center',
-                    text: 'This is my noty Message',
+                    text: data.datatoshow,
                     timeout: 2000,
                     }).show();
             }

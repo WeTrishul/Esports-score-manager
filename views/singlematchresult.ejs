@@ -6,7 +6,7 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <title>Data Tables</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     
+     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -20,7 +20,9 @@
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
  </head>
+ 
  <body  style=" zoom: 90%;" class="bg-green-500">
+   
  <!-- <div class="container"> -->
     <!-- <button id="tbtn" onclick="ShowTeams()">Teams</button>
     <button id="plbtn" onclick="ShowPlayers()">Players</button> -->
@@ -194,15 +196,54 @@
 </div>
 
 
+
+
+
     
         
     </section>
+
+        <canvas id="myChart"  style="display: none;width:100%;
+        max-width:700px;
+        background-color: white;
+        " class="ml-auto mr-auto"></canvas>
+     
+   
 <!-- </div> -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
    
    
 <!-- component -->
 
+
+<script>
+  
+  var a = '<%=chartkliyeteams%>'
+  var b = '<%=chartkliyekills%>'         
+   var xValues = a.split(",");
+
+var yValues = b.split(",");
+var barColors = ["blue"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Projection"
+    }
+  }
+});
+  </script>
+ 
 
 
  
@@ -229,19 +270,29 @@
         document.getElementById("teamTable").style.display = "block";
     document.getElementById("playerTable").style.display = "none";
     document.getElementById("topThreeplayer").style.display = "none";
+    document.getElementById("myChart").style.display="none";
     }
     else if(event.keyCode == 38)
     {
         document.getElementById("teamTable").style.display = "none";
     document.getElementById("playerTable").style.display = "none";
     document.getElementById("topThreeplayer").style.display = "block";
-        
+    document.getElementById("myChart").style.display="none";
         
     }
     else if(event.keyCode == 39) {
         document.getElementById("teamTable").style.display = "none";
     document.getElementById("playerTable").style.display = "block";
     document.getElementById("topThreeplayer").style.display = "none";
+    document.getElementById("myChart").style.display="none";
+    }
+    else if(event.keyCode==81)
+    {
+        
+        document.getElementById("teamTable").style.display = "none";
+        document.getElementById("myChart").style.display="block";
+        document.getElementById("playerTable").style.display = "none";
+        document.getElementById("topThreeplayer").style.display = "none";
     }
 });
      </script>
