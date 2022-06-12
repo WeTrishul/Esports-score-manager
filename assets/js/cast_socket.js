@@ -43,12 +43,15 @@ class SocketEngine{
                 $('#'+data.eleid).css('color','#DC2626')
                 console.log('#'+data.eleid+'-teamname')
 
-                new Noty({
-                    type: 'success',
-                    layout: 'center',
-                    text: data.datatoshow,
-                    timeout: 2000,
-                    }).show();
+                $('#eliminatedTeamName').text(data.teamName)
+                $("#eliminatedTeamLogo").attr("src",data.teamLogo);
+
+                // new Noty({
+                //     type: 'success',
+                //     layout: 'center',
+                //     text: data.teamLogo,
+                //     timeout: 2000,
+                //     }).show();
             }
 
             else{

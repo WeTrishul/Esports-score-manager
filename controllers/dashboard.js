@@ -286,10 +286,34 @@ module.exports.savematchdata = async(req,res)=>{
     
     eve.matchdata.forEach((ele)=>{
 
+       
+        
+        if(ele.prevPoint)
+        {
+            ele.prevPoint= ele.teamPoint
+            
+        }
+        else{
+            ele.prevPoint = 1
+            ele.pointDiff=0
+        }
+
         ele.placement=req.body[ele.teamname+"-"+"TPlace"]
         ele.teamFinnish=req.body[ele.teamname+"-"+"TFin"]
         ele.teamPoint=req.body[ele.teamname+"-"+"TPoint"]
         ele.WWCD=req.body[ele.teamname+"-"+"WWCD"]
+
+        if(ele.prevPoint==1)
+        {
+            ele.pointDiff= 0
+        }
+        else{
+            ele.pointDiff= parseInt(ele.teamPoint) -  parseInt(ele.prevPoint)
+        }
+        
+      
+       
+
         ele.playersArray.forEach((e)=>{
 
             e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
@@ -333,7 +357,7 @@ module.exports.savematchdata = async(req,res)=>{
            team.teamPoint =parseInt(team.teamPoint)+parseInt(ele.teamPoint);
            team.placement = parseInt(team.placement)+parseInt(ele.placement);
            team.teamFinnish =parseInt(team.teamFinnish) + parseInt(ele.teamFinnish) ;
-           team.elevation =parseInt(team.teamPoint)- parseInt(ele.teamPoint);
+        //    team.elevation =parseInt(team.teamPoint)- parseInt(ele.teamPoint);
            team.WWCD = parseInt(team.WWCD) + parseInt(ele.WWCD);
 
             for(var k=0 ; k<4 ; k++)

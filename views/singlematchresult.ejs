@@ -81,7 +81,17 @@
                                         <div class="text-left font-medium text-green-500"><%=i.WWCD%></div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center"><%=i.teamPoint%></div>
+                                        
+                                        <% if(i.pointDiff > 0) {%>
+                                            <div class="text-lg text-center"><%=i.teamPoint%> <span class=" text-sm text-green-600">+ <%=i.pointDiff%> </span></div>
+                                            <%}%>
+                                            <% if(i.pointDiff < 0) {%>
+                                                <div class="text-lg text-center"><%=i.teamPoint%> <span class="text-sm text-red-600"><%=i.pointDiff%> </span></div>
+                                                <%}%>
+                                                <% if(i.pointDiff == 0) {%>
+                                                    <div class="text-lg text-center"><%=i.teamPoint%>  </span></div>
+                                                    <%}%>
+
                                     </td>
                                 </tr>
                                 <%}%>
