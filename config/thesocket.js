@@ -38,6 +38,8 @@ module.exports.chat = (socketserver) =>{
           }
 
           var datatoshow=event.eventdata[(data.sNo)-1][data.attri]
+
+          var teamLogo = event.eventdata[(data.sNo)-1]['Logo']
       
           event.markModified('eventdata');
          
@@ -48,6 +50,7 @@ module.exports.chat = (socketserver) =>{
           io.emit('yesyoumayincrement',{
             eleid:data.attri+'-'+data.sNo+'-'+data.eventname,
             teamName:data.teamName,
+            teamLogo,
             datatoshow
           })
 

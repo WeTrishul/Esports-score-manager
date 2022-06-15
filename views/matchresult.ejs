@@ -59,12 +59,14 @@
             <td align="center">TNAME</td>
             <td align="center">CO</td>
             <td align="center">PLAYER</td>
-            <!-- <td align="center">POS</td> -->
            
             <td align="center">FINISH</td>
             <td align="center">Team Finnish </td>
             <td align="center">Team Placement </td>
+            <td align="center">WWCD</td>
+
             <td align="center">Team Point </td>
+
         </tr>
  
       <form action="/savematchdata/<%=eve%>" method="POST">
@@ -73,16 +75,16 @@
         <tr>
             <td rowspan="5" align="center"><%=matchdata[i].teamname%></td>
             <td rowspan="5" align="center"><%=i+1%></td>
-
             <td align="center" ></td>
-            <!-- <td rowspan="5" align="center"><input value="0" name="<%=matchdata[i].teamname%>-pos" size="1" placeholder="0" type="text"></td> -->
             
             
             <td align="center"></td>
+
             <td rowspan="5" align="center"><input value="0" id="<%=i%>-TFin" name="<%=matchdata[i].teamname%>-TFin" size="1" placeholder="0" type="text"></td>
             <td rowspan="5" align="center"><input value="0" id="<%=i%>-TPlace" name="<%=matchdata[i].teamname%>-TPlace" size="1" placeholder="0" type="text"></td>
-            <td rowspan="5" align="center"><input value="0" id="<%=i%>-TPoint" name="<%=matchdata[i].teamname%>-TPoint" size="1" placeholder="0" type="text"></td>
+            <td rowspan="5" align="center"><input value="0" name="<%=matchdata[i].teamname%>-WWCD" size="1" placeholder="0" type="text"></td>
 
+            <td rowspan="5" align="center"><input value="0" id="<%=i%>-TPoint" name="<%=matchdata[i].teamname%>-TPoint" size="1" placeholder="0" type="text"></td>
         </tr>
         <%  for(var j=0;j<matchdata[i].playersArray.length;j++){%>
         <tr>
@@ -93,7 +95,6 @@
         </tr>
  
         <%}%>
-
         <%}%>
         
         
@@ -105,7 +106,6 @@
      $(document).ready( function () {
      $('#myTable').DataTable();
      $('#secTable').DataTable();
-
  } );
     </script>
 
@@ -121,22 +121,16 @@
                     var num2 = parseInt(document.getElementById(i+"-1-fin").value);
                     var num3 = parseInt(document.getElementById(i+"-2-fin").value);
                     var num4 = parseInt(document.getElementById(i+"-3-fin").value);
-
                  
                     var f = num1 + num2 + num3 + num4
                     
                     document.getElementById(i+"-TFin").value = f
-
                    var p = parseInt(document.getElementById(i+"-TPlace").value)
-
                     document.getElementById(i+"-TPoint").value = p + f
-
                     
             }
           
-
             
-
         }
         
     </script>

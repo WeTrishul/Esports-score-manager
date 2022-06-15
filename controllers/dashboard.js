@@ -116,6 +116,7 @@ unique.forEach((element)=>{
                 {
                     var player = {
                         playername:element.PLAYER,
+                        dp:element.DP,
                         finnish:0,
                         damage:0
                     }
@@ -282,12 +283,37 @@ module.exports.savematchdata = async(req,res)=>{
     const eve = await Event.findOne({eventname:req.params.eventname})
 
    
-
+    
     eve.matchdata.forEach((ele)=>{
+
+       
+        
+        if(ele.prevPoint)
+        {
+            ele.prevPoint= ele.teamPoint
+            
+        }
+        else{
+            ele.prevPoint = 1
+            ele.pointDiff=0
+        }
 
         ele.placement=req.body[ele.teamname+"-"+"TPlace"]
         ele.teamFinnish=req.body[ele.teamname+"-"+"TFin"]
         ele.teamPoint=req.body[ele.teamname+"-"+"TPoint"]
+        ele.WWCD=req.body[ele.teamname+"-"+"WWCD"]
+
+        if(ele.prevPoint==1)
+        {
+            ele.pointDiff= 0
+        }
+        else{
+            ele.pointDiff= parseInt(ele.teamPoint) -  parseInt(ele.prevPoint)
+        }
+        
+      
+       
+
         ele.playersArray.forEach((e)=>{
 
             e.finnish=req.body[ele.teamname+"_"+e.playername+"_finnish"]
@@ -331,6 +357,8 @@ module.exports.savematchdata = async(req,res)=>{
            team.teamPoint =parseInt(team.teamPoint)+parseInt(ele.teamPoint);
            team.placement = parseInt(team.placement)+parseInt(ele.placement);
            team.teamFinnish =parseInt(team.teamFinnish) + parseInt(ele.teamFinnish) ;
+        //    team.elevation =parseInt(team.teamPoint)- parseInt(ele.teamPoint);
+           team.WWCD = parseInt(team.WWCD) + parseInt(ele.WWCD);
 
             for(var k=0 ; k<4 ; k++)
             {
@@ -382,6 +410,7 @@ module.exports.castmatchresult = async (req,res) =>{
             allplayers.push({
                 teamname:ele.teamname,
                 playername:e.playername,
+                dp:e.dp,
                 finnish:e.finnish,
                 damage:e.damage
             })
@@ -392,12 +421,22 @@ module.exports.castmatchresult = async (req,res) =>{
 
    
     // console.log("Chal rha h",killsleaders)
+    var chartkliyeteams = []
+    var chartkliyekills = []
+
+    for(i of teamleaderboards)
+    {
+        chartkliyekills.push(i.teamFinnish)
+        chartkliyeteams.push(i.teamname)
+    }
     // console.log("Yh bhi chal rha h ",teamleaderboards)
    
     return res.render('singlematchresult',{
         matchno : req.params.matchno,
         teamleaderboards,
-        killsleaders
+        killsleaders,
+        chartkliyekills,
+        chartkliyeteams
     })
     
 }
@@ -426,6 +465,7 @@ module.exports.castOverAllResult=async(req,res)=>{
             allplayers.push({
                 teamname:ele.teamname,
                 playername:e.playername,
+                dp:e.dp,
                 finnish:e.finnish,
                 damage:e.damage
             })
