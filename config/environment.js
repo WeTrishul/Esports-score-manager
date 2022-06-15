@@ -13,7 +13,7 @@ const development = {
         secure: true, // true for 465, false for other ports
         auth: {
           user: "team.wetrishul@gmail.com", 
-          pass: "emieqzsfcizazmhb",
+          pass: "tszxvuqtfjzitgdc",
         }
     }
 }
