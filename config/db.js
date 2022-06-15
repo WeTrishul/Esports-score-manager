@@ -2,7 +2,7 @@
 const env = require('./environment')
 const mongoose=require('mongoose')
 
-mongoose.connect(`mongodb://127.0.0.1:27017/esportscore`,{
+mongoose.connect(`mongodb://127.0.0.1:27017/esportsManager`,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
