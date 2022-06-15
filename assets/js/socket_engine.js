@@ -2,7 +2,7 @@ var thesocket
 
 class SocketEngine{
     constructor(){
-        this.socket = io.connect('http://54.160.241.49:4000');
+        this.socket = io.connect('http://52.91.244.96:4000');
             this.connectionHandler();
     }
     connectionHandler(){
