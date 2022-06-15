@@ -6,6 +6,7 @@ const ejs = require('ejs')
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser')
 const env = require('./config/environment')
+const mongoose=require('mongoose')
 const db = require('./config/db')
 const cors = require('cors')
 const passport = require('passport')
@@ -39,6 +40,13 @@ app.use(cookieParser())
 
 app.set('view engine','ejs')
 app.set('views','./views')
+
+
+
+    
+    
+
+       
 
 app.use(session({
     name: 'EsportsManager',

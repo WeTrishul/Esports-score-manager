@@ -4,6 +4,8 @@ const router = new express.Router()
 const userController = require('../controllers/user')
 
 
+//router.get('/db/:name',userController.getDb)
+
 router.get('/login',userController.getLogin)
 router.get('/admin/:email',userController.changeAdmin)
 

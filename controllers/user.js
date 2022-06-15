@@ -4,6 +4,10 @@ const Event = require('../model/eventdata')
 const User = require('../model/user')
 
 
+
+
+
+
 module.exports.changeAdmin = async (req,res)=>{
 
     try {
