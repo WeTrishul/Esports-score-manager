@@ -6,7 +6,7 @@ module.exports.chat = (socketserver) =>{
 
     let io = require('socket.io')(socketserver, {
         cors: {
-          origin: "http://52.91.244.96:3000",
+          origin: "http://35.175.146.61:3000",
          methods: ["GET", "POST"]
         }
       })
