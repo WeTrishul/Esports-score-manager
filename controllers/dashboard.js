@@ -498,8 +498,4 @@ module.exports.pk = (req,res) =>{
  }
 
 
-module.exports.pk = (req,res) =>{
 
-    
-
-}
