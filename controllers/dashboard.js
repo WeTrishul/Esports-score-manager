@@ -487,19 +487,15 @@ module.exports.castOverAllResult=async(req,res)=>{
 
 module.exports.kk = (req,res) =>{
 
-   return res.send('<h1>Invalid URL</h1>');
+   return res.send('<img style=" display: block;margin-left: auto; margin-right: auto; width: 50%;" src="https://i.pinimg.com/originals/b8/b8/f7/b8b8f787c454cf1ded2d9d870707ed96.png">');
 
 }
 
 module.exports.pk = (req,res) =>{
 
-    return res.send('<h1>Invalid URL</h1>');
+    return res.send('<img style=" display: block;margin-left: auto; margin-right: auto; width: 50%;" src="https://i.pinimg.com/originals/b8/b8/f7/b8b8f787c454cf1ded2d9d870707ed96.png">');
  
  }
 
 
-module.exports.pk = (req,res) =>{
 
-    
-
-}
