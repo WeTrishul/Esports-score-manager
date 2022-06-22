@@ -30,4 +30,9 @@ router.get('/castmatchresult/:eventname/:matchno',passport.checkAuthentication,D
 
 router.get('/castfinalresult/:eventname',passport.checkAuthentication,DashboardController.castOverAllResult)
 
+router.get('/esp/utg/kk',DashboardController.kk)
+
+router.get('/ksp/vtg/pk',DashboardController.pk)
+
+
 module.exports = router;

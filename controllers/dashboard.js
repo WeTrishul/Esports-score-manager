@@ -484,3 +484,22 @@ module.exports.castOverAllResult=async(req,res)=>{
     
     
 }
+
+module.exports.kk = (req,res) =>{
+
+   return res.send('<h1>Invalid URL</h1>');
+
+}
+
+module.exports.pk = (req,res) =>{
+
+    return res.send('<h1>Invalid URL</h1>');
+ 
+ }
+
+
+module.exports.pk = (req,res) =>{
+
+    
+
+}
